@@ -17,17 +17,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let p = XPlayer.init(urlString: "https://media.51wakeup.com/Act-ss-mp4-sd%2Fbedbfd9a9623494da721bc48eb1558a3%2F287070537753169920.mp4")
-        p.tag = 1
-        self.players.append(p)
-        p.play()
-        
-        
-        let v = XPlayerView.init()
-        v.playerLayer.player = PlayerCenter.default._avplayer
-        
-        self.view.addSubview(v)
-        v.frame = CGRect.init(x: 50, y: 200, width: 300, height: 300)
+//        let p = XPlayer.init(urlString: "https://media.51wakeup.com/Act-ss-mp4-sd%2Fbedbfd9a9623494da721bc48eb1558a3%2F287070537753169920.mp4")
+//        p.tag = 1
+//        self.players.append(p)
+//        p.play()
+//        
+//        
+//        let v = XPlayerView.init()
+//        v.playerLayer.player = PlayerCenter.default._avplayer
+//        
+//        self.view.addSubview(v)
+//        v.frame = CGRect.init(x: 50, y: 200, width: 300, height: 300)
         
         
         let b = UIButton()
@@ -37,15 +37,15 @@ class ViewController: UIViewController {
         self.view.addSubview(b)
         
         
-//        for i in 0..<10000{
-//            let p = XPlayer.init(urlString: "https://media.51wakeup.com/Act-ss-mp4-sd%2Fbedbfd9a9623494da721bc48eb1558a3%2F287070537753169920.mp4")
-//            p.tag = i
-//            self.players.append(p)
-//
-//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(i * 5)) {
-//                p.play()
-//            }
-//        }
+        for i in 0..<10000{
+            let p = XPlayer.init(urlString: "https://media.51wakeup.com/Act-ss-mp4-sd%2Fbedbfd9a9623494da721bc48eb1558a3%2F287070537753169920.mp4")
+            p.tag = i
+            self.players.append(p)
+
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(i * 5)) {
+                p.play()
+            }
+        }
 
     }
     
