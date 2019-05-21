@@ -95,8 +95,6 @@ open class PlayerCenter {
     /// Resumes playback when entering foreground.
     open var playbackResumesWhenEnteringForeground: Bool = false
     
-
-    
     /// Current playback state of the Player.
     open var playerState: PlayerState = .loading {
         didSet {
@@ -141,6 +139,13 @@ open class PlayerCenter {
     internal var _lastBufferTime: Double = 0
     internal var _preferredMaximumResolution: CGSize = .zero
     
+    internal weak var playerLayer:AVPlayerLayer?{
+        didSet{
+            oldValue?.player = nil
+            playerLayer?.player = self._avplayer
+        }
+    }
+    
     /// user click play button or pause button
     internal var _isUserPlay: Bool = true
     
@@ -171,8 +176,8 @@ open class PlayerCenter {
 
 extension PlayerCenter {
     
-    open func load(url:URL,listen:PlayerListener){
-        
+    open func load(url:URL,playerLayer:AVPlayerLayer?,listen:PlayerListener){
+        self.playerLayer = playerLayer
         if self.listen === listen{
             self.play()
             return

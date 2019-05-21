@@ -25,7 +25,7 @@ public typealias XPlayerDelegate = PlayerListener
 
 public class XPlayer{
     
-    var tag = 0
+    public var tag = 0
     
     public lazy var playerView : XPlayerView = {
         let v = XPlayerView()
@@ -34,9 +34,9 @@ public class XPlayer{
     
     open weak var delegate : XPlayerDelegate?
     
-    private(set) var playStatus : PlayerState = .paused
+    public private(set) var playStatus : PlayerState = .paused
     
-    var isPlaying : Bool{
+    public var isPlaying : Bool{
         if PlayerCenter.default.listen === self{
             return PlayerCenter.default.isPlaying
         }
@@ -44,10 +44,10 @@ public class XPlayer{
     }
     
     let url : URL
-    init(_ url:URL) {
+    public init(_ url:URL) {
         self.url = url
     }
-    convenience init(urlString:String) {
+    public convenience init(urlString:String) {
         var url : URL
         if urlString.starts(with: "http"){
             url = URL.init(string: urlString)!
@@ -57,15 +57,15 @@ public class XPlayer{
         self.init(url)
         
     }
-    func play(){
-        PlayerCenter.default.load(url: url, listen: self)
+    public func play(){
+        PlayerCenter.default.load(url: url,playerLayer: self.playerView.playerLayer, listen: self)
     }
-    func pause(){
+    public func pause(){
         if PlayerCenter.default.listen === self{
             PlayerCenter.default.pause()
         }
     }
-    func seek(to time: TimeInterval){
+    public func seek(to time: TimeInterval){
 //        if PlayerCenter.default.listen === self{
 //            PlayerCenter.default.pause()
 //        }
